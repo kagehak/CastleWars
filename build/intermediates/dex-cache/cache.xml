@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/kagehak/Documents/CastleWars/core/build/libs/core-1.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="fbf8852e3aa9eaf466040acb3425d756503828b3">
+        <dex dex="/home/kagehak/Documents/CastleWars/android/build/intermediates/pre-dexed/debug/core-1.0-3e25ef5c8f29b0661e18e9b57c911b5724ce5881.jar" />
+    </item>
+
+</items>
