@@ -1,0 +1,47 @@
+
+MainMenuButtons.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+BTN_GRAY_RECT_IN
+  rotate: false
+  xy: 1, 281
+  size: 381, 138
+  orig: 381, 138
+  offset: 0, 0
+  index: -1
+BTN_GREEN_RECT_OUT
+  rotate: false
+  xy: 1, 141
+  size: 381, 138
+  orig: 381, 138
+  offset: 0, 0
+  index: -1
+BTN_GRAY_RECT_OUT
+  rotate: false
+  xy: 384, 281
+  size: 381, 138
+  orig: 381, 138
+  offset: 0, 0
+  index: -1
+BTN_GREEN_RECT_IN
+  rotate: false
+  xy: 1, 1
+  size: 381, 138
+  orig: 381, 138
+  offset: 0, 0
+  index: -1
+BTN_BLUE_RECT_OUT
+  rotate: false
+  xy: 384, 141
+  size: 381, 138
+  orig: 381, 138
+  offset: 0, 0
+  index: -1
+BTN_BLUE_RECT_IN
+  rotate: false
+  xy: 384, 1
+  size: 381, 138
+  orig: 381, 138
+  offset: 0, 0
+  index: -1
