@@ -30,7 +30,7 @@ public class MainMenu implements Screen {
 
     public MainMenu(Game game) {
         this.game = game;
-        this.viewScale = Gdx.graphics.getHeight() / 1080f;
+        this.viewScale = Gdx.graphics.getHeight() / 1080f; // helps scale to all screen resolutions 
     }
 
     @Override
@@ -66,7 +66,7 @@ public class MainMenu implements Screen {
 
         buttonQuickPlay.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-
+                game.setScreen(new QuickPlay(game));
             }
         });
 
