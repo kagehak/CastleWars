@@ -5,7 +5,7 @@
         jar="/home/kagehak/AndroidStudioProjects/CastleWars/core/build/libs/core-1.0.jar"
         jumboMode="false"
         revision="23.0.0"
-        sha1="28e698925a4b52ee1da9dccdec4a4f36419cf862">
+        sha1="4a602a9f2b3480737bd3bb49df79b2c9a091c499">
         <dex dex="/home/kagehak/AndroidStudioProjects/CastleWars/android/build/intermediates/pre-dexed/debug/core-1.0-76d3e68dcf00968017802d88274a7862d6804bcc.jar" />
     </item>
 

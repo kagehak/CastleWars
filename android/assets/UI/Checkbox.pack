@@ -1,0 +1,33 @@
+
+Checkbox.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+BTN_CHECKBOX_IN
+  rotate: false
+  xy: 1, 1
+  size: 57, 56
+  orig: 58, 60
+  offset: 1, 4
+  index: -1
+BTN_RADIO_IN
+  rotate: false
+  xy: 60, 6
+  size: 49, 51
+  orig: 49, 53
+  offset: 0, 0
+  index: -1
+BTN_CHECKBOX_OUT
+  rotate: false
+  xy: 111, 7
+  size: 50, 50
+  orig: 51, 55
+  offset: 1, 5
+  index: -1
+BTN_RADIO_OUT
+  rotate: false
+  xy: 163, 6
+  size: 49, 51
+  orig: 49, 53
+  offset: 0, 0
+  index: -1

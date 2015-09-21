@@ -122,7 +122,7 @@ public class MainMenu implements Screen {
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
 
         Skin skin = new Skin();
-        TextureAtlas buttonAtlas = new TextureAtlas("MainMenu/MainMenuButtons.pack");
+        TextureAtlas buttonAtlas = new TextureAtlas("UI/MainMenuButtons.pack");
         skin.addRegions(buttonAtlas);
 
         BitmapFont font = new BitmapFont();

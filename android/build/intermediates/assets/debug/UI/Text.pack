@@ -1,0 +1,33 @@
+
+Text.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+UI_ETCBAR3
+  rotate: false
+  xy: 1, 145
+  size: 354, 86
+  orig: 354, 86
+  offset: 0, 0
+  index: -1
+UI_ETCBAR1
+  rotate: false
+  xy: 1, 57
+  size: 354, 86
+  orig: 354, 86
+  offset: 0, 0
+  index: -1
+UI_ETCBAR2
+  rotate: false
+  xy: 357, 145
+  size: 354, 86
+  orig: 354, 86
+  offset: 0, 0
+  index: -1
+UI_INPUT
+  rotate: false
+  xy: 1, 1
+  size: 268, 54
+  orig: 268, 54
+  offset: 0, 0
+  index: -1

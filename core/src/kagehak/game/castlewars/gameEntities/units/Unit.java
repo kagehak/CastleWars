@@ -8,10 +8,12 @@ import java.util.List;
 /**
  * Created by kagehak on 9/11/15.
  */
-public abstract class Unit {
+public class Unit {
     private Rectangle unitbounds;
     private Rectangle attackbounds; // Unit range
     private int level;
+
+    private String name;
 
     private float health;
     private float armor;
@@ -19,25 +21,43 @@ public abstract class Unit {
 
     private float damage;
     private int damageType;
+    private float range;
     private float attackSpeed;
     private float timeSinceLastAttack;
 
     private  boolean fromRight; // true if unit is spawned in right side, false if spawned in left side
 
+    public Unit(int level, String name, float health, float armor, int armorType, float damage, int damageType, float range, float attackSpeed) {
+        this.level = level;
+        this.name = name;
+        this.health = health;
+        this.armor = armor;
+        this.armorType = armorType;
+        this.damage = damage;
+        this.damageType = damageType;
+        this.range = range;
+        this.attackSpeed = attackSpeed;
+    }
+
     public void Move(List<Unit> playerUnits, List<Unit> enemyUnits){
         // Code for Unit move
     }
 
-    public void Attack(List<Unit> playerUnits, List<Unit> enemyUnits){
-        // Code for Unit Attack
+    public void Attack(List<Unit> playerUnits, List<Unit> enemyUnits) {
+        // Code for Attack move
     }
 
     public void Draw(SpriteBatch batch){
         // Code for drawing Unit
     }
 
+    public String getName() {
+        return name;
+    }
 
-
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Rectangle getUnitbounds() {
         return unitbounds;
@@ -101,6 +121,14 @@ public abstract class Unit {
 
     public void setDamageType(int damageType) {
         this.damageType = damageType;
+    }
+
+    public float getRange() {
+        return range;
+    }
+
+    public void setRange(float range) {
+        this.range = range;
     }
 
     public float getAttackSpeed() {

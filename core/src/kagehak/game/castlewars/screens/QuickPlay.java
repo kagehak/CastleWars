@@ -3,11 +3,22 @@ package kagehak.game.castlewars.screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+
+import kagehak.game.castlewars.gameEntities.Player;
+import kagehak.game.castlewars.gameEntities.Race;
+import kagehak.game.castlewars.gameLogic.StandartRaces;
 
 /**
  * Created by kagehak on 9/12/15.
@@ -19,6 +30,7 @@ public class QuickPlay implements Screen {
     private final float viewScale;
 
     Sprite Box;
+    private TextButton buttonPlay;
 
     public QuickPlay(Game game) {
         this.game = game;
@@ -37,7 +49,21 @@ public class QuickPlay implements Screen {
         Box.setSize(Box.getWidth() * viewScale, Box.getHeight() * viewScale);
         Box.setPosition(Gdx.graphics.getWidth() / 2 - Box.getWidth() / 2, Gdx.graphics.getHeight() / 2 - Box.getHeight() / 2);
 
+        buttonPlay = new TextButton("Start Game", getButtonStyle("BTN_GRAY_RECT_IN", "BTN_GRAY_RECT_OUT"));
+        buttonPlay.setPosition(getCenter(buttonPlay), viewScale * 100);
+
+        stage.addActor(buttonPlay);
+
         Gdx.input.setInputProcessor(stage);
+
+        buttonPlay.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new PlayScreen(game,
+                        new Player("You", 0, 5, 240, new Race("Human", StandartRaces.getDefault(1))),
+                        new Player("Enemy", 0, 5, 240, new Race("Human", StandartRaces.getDefault(1)))
+                ));
+            }
+        });
     }
 
     @Override
@@ -75,5 +101,34 @@ public class QuickPlay implements Screen {
     @Override
     public void dispose() {
 
+    }
+
+    public TextButton.TextButtonStyle getButtonStyle(String in, String out){
+        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
+
+        Skin skin = new Skin();
+        TextureAtlas buttonAtlas = new TextureAtlas("UI/MainMenuButtons.pack");
+        skin.addRegions(buttonAtlas);
+
+        BitmapFont font = new BitmapFont();
+        font.setColor(Color.BLACK);
+        font.getData().setScale(viewScale * 4);
+
+        style.up = skin.getDrawable(out);
+        style.up.setMinHeight(2*138*viewScale);
+        style.up.setMinWidth(2 * 381 * viewScale);
+        style.over = skin.getDrawable(in);
+        style.over.setMinHeight(2*138*viewScale);
+        style.over.setMinWidth(2 * 381 * viewScale);
+        style.down = skin.getDrawable(in);
+        style.down.setMinHeight(2*138*viewScale);
+        style.down.setMinWidth(2 * 381 * viewScale);
+        style.font = font;
+
+        return style;
+    }
+
+    public float getCenter(TextButton o){
+        return Gdx.graphics.getWidth() / 2 - o.getWidth() / 2;
     }
 }
