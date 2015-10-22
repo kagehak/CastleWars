@@ -1,7 +1,14 @@
 package kagehak.game.castlewars.gameEntities.units;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 
 import java.util.List;
 
@@ -11,7 +18,16 @@ import java.util.List;
 public class Unit {
     private Rectangle unitbounds;
     private Rectangle attackbounds; // Unit range
+    Vector2 position;
     private int level;
+
+    BitmapFont font;
+
+    Texture texture;
+    Animation animation;
+    TextureRegion[] frames;
+    TextureRegion currentFrame;
+    float stateTime;
 
     private String name;
 
@@ -37,18 +53,63 @@ public class Unit {
         this.damageType = damageType;
         this.range = range;
         this.attackSpeed = attackSpeed;
+
+        /* TEXTURE */
+        this.texture = new Texture(Gdx.files.internal("sprites.png"));
+        TextureRegion[][] tmp = TextureRegion.split(texture, texture.getWidth() / 4 ,texture.getHeight() / 4);
+        frames = new TextureRegion[4 * 4];
+        int index = 0;
+        for(int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                frames[index++] = tmp[i][j];
+            }
+        }
+        animation = new Animation(1f, frames);
+        stateTime = 0f;
+        currentFrame = animation.getKeyFrame(0);
+
+        /* FONT */
+        font = new BitmapFont();
+        font.setColor(Color.RED);
+        font.getData().setScale(0.1f);
     }
 
     public void Move(List<Unit> playerUnits, List<Unit> enemyUnits){
-        // Code for Unit move
+        unitbounds.set(position.x, position.y, currentFrame.getRegionWidth(), currentFrame.getRegionHeight());
+        attackbounds.set(position.x, position.y, attackbounds.getWidth(), 128);
+        if(stateTime < 4)
+            stateTime += Gdx.graphics.getDeltaTime()*4;
+        else
+            stateTime = 0;
+
+        currentFrame = animation.getKeyFrame(0 + stateTime);
+
+        if(enemyUnits.contains(this)) {
+            position.x -= 1f;
+            attackbounds.set(position.x - attackbounds.getWidth() + currentFrame.getRegionWidth(), position.y, attackbounds.getWidth(), 128);
+            currentFrame.flip(true, false);
+        }
+        else
+            position.x += 1f;
+
     }
 
     public void Attack(List<Unit> playerUnits, List<Unit> enemyUnits) {
-        // Code for Attack move
+        unitbounds.set(position.x, position.y, currentFrame.getRegionWidth(), currentFrame.getRegionHeight());
+        if(stateTime < 4)
+            stateTime += Gdx.graphics.getDeltaTime()*4;
+        else
+            stateTime = 0;
+        currentFrame = animation .getKeyFrame(4 + stateTime);
+        if(enemyUnits.contains(this)) {
+            currentFrame.flip(true, false);
+        }
+
     }
 
     public void Draw(SpriteBatch batch){
-        // Code for drawing Unit
+        batch.draw(currentFrame, position.x, position.y);
+        font.draw(batch, (double)Math.round(health * 10) / 10 + " HP", position.x, position.y + currentFrame.getRegionHeight()+ 20);
     }
 
     public String getName() {
